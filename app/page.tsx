@@ -176,11 +176,11 @@ function Header() {
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
-              <span className="text-dark-950 font-display font-bold text-sm">PA</span>
+              <span className="text-dark-950 font-display font-bold text-sm">YJM</span>
             </div>
             <div className="flex flex-col">
               <span className="font-display font-semibold text-lg text-dark-100 group-hover:text-accent transition-colors leading-tight">
-                Premier Apparel
+                YJM Apparel Group
               </span>
               <span className="text-[10px] text-neutral-500 uppercase tracking-wider">Concept</span>
             </div>
@@ -1170,11 +1170,11 @@ function Footer() {
           <div className="md:col-span-2 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
-                <span className="text-dark-950 font-display font-bold text-sm">PA</span>
+                <span className="text-dark-950 font-display font-bold text-sm">YJM</span>
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-semibold text-xl text-dark-100">
-                  Premier Apparel
+                  YJM Apparel Group
                 </span>
                 <span className="text-[10px] text-neutral-500 uppercase tracking-wider">Concept Redesign</span>
               </div>
@@ -1214,7 +1214,7 @@ function Footer() {
         <div className="border-t border-dark-800/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-dark-600">
-              © {new Date().getFullYear()} Premier Apparel Manufacturing (Concept)
+              © {new Date().getFullYear()} YJM Apparel Group (Concept Redesign)
             </p>
             <p className="text-xs text-neutral-500 text-center">
               Concept Design • Not affiliated with YJM Apparel Group • For demonstration only

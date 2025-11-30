@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Premier Apparel Manufacturing | Concept Redesign',
-  description: 'Concept redesign demonstration for apparel manufacturing. Specializing in menswear, womenswear, kidswear, activewear, and streetwear production.',
+  title: 'YJM Apparel Group | Concept Redesign',
+  description: 'Concept redesign demonstration for YJM Apparel Group. Specializing in menswear, womenswear, kidswear, activewear, and streetwear production.',
 }
 
 export default function RootLayout({
