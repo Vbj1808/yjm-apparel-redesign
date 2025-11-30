@@ -79,6 +79,12 @@ const IconMail = () => (
   </svg>
 )
 
+const IconPhone = () => (
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+  </svg>
+)
+
 const IconLocation = () => (
   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -103,6 +109,33 @@ const IconClose = () => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
   </svg>
 )
+
+// ============================================================================
+// CONCEPT DISCLAIMER BANNER COMPONENT
+// ============================================================================
+
+function ConceptBanner() {
+  const [isVisible, setIsVisible] = useState(true)
+
+  if (!isVisible) return null
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[60] bg-neutral-900 border-b border-neutral-800">
+      <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-center gap-4">
+        <p className="text-neutral-400 text-xs sm:text-[13px] text-center">
+          This is a concept redesign created as a demonstration project. It is not affiliated with YJM Apparel Group.
+        </p>
+        <button
+          onClick={() => setIsVisible(false)}
+          className="flex-shrink-0 p-1 text-neutral-500 hover:text-neutral-300 transition-colors"
+          aria-label="Dismiss banner"
+        >
+          <IconClose />
+        </button>
+      </div>
+    </div>
+  )
+}
 
 // ============================================================================
 // HEADER / NAVBAR COMPONENT
@@ -132,7 +165,7 @@ function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-10 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
           ? 'glass border-b border-dark-800/50' 
           : 'bg-transparent'
@@ -143,11 +176,14 @@ function Header() {
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
-              <span className="text-dark-950 font-display font-bold text-lg">YJM</span>
+              <span className="text-dark-950 font-display font-bold text-sm">PA</span>
             </div>
-            <span className="font-display font-semibold text-xl text-dark-100 group-hover:text-accent transition-colors">
-              YJM Apparel Group
-            </span>
+            <div className="flex flex-col">
+              <span className="font-display font-semibold text-lg text-dark-100 group-hover:text-accent transition-colors leading-tight">
+                Premier Apparel
+              </span>
+              <span className="text-[10px] text-neutral-500 uppercase tracking-wider">Concept</span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
@@ -217,7 +253,7 @@ function Header() {
 
 function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-32 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-dark-900 via-dark-950 to-[#0a0a0b]" />
       <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
@@ -236,9 +272,9 @@ function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Left Content */}
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-900/80 border border-dark-800 text-sm text-dark-300">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-900/80 border border-dark-800 text-xs text-neutral-400">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Trusted by 50+ Global Retailers
+              Trusted by major North American retailers*
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
@@ -249,11 +285,16 @@ function HeroSection() {
               <span className="text-dark-100">for Global Retailers</span>
             </h1>
 
-            <p className="text-lg text-dark-400 max-w-xl leading-relaxed">
-              From concept to delivery, we specialize in premium menswear, womenswear, 
-              kidswear, activewear, and streetwear production. Your trusted partner for 
-              private-label manufacturing at scale.
-            </p>
+            <div className="space-y-4">
+              <p className="text-lg text-dark-400 max-w-xl leading-relaxed">
+                From concept to delivery, we specialize in premium menswear, womenswear, 
+                kidswear, activewear, and streetwear production. Your trusted partner for 
+                private-label manufacturing at scale.
+              </p>
+              <p className="text-sm text-neutral-300">
+                Built for buying, merchandising, and sourcing teams who need a reliable long-term manufacturing partner.
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -271,18 +312,23 @@ function HeroSection() {
               </a>
             </div>
 
-            {/* Stats */}
-            <div className="flex flex-wrap gap-8 pt-6 border-t border-dark-800/50">
-              {[
-                { value: '30+', label: 'Years Experience' },
-                { value: '50M+', label: 'Units Annually' },
-                { value: '100+', label: 'Factory Partners' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="font-display text-2xl font-bold text-accent">{stat.value}</div>
-                  <div className="text-sm text-dark-500">{stat.label}</div>
-                </div>
-              ))}
+            {/* Stats - Updated with placeholder text */}
+            <div className="space-y-4">
+              <div className="flex flex-wrap gap-8 pt-6 border-t border-dark-800/50">
+                {[
+                  { value: 'Decades', label: 'Industry Experience' },
+                  { value: 'Millions', label: 'Units Shipped Annually' },
+                  { value: 'Global', label: 'Manufacturing Network' },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div className="font-display text-xl font-bold text-accent">{stat.value}</div>
+                    <div className="text-xs text-neutral-500">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-neutral-500">
+                *All figures shown are illustrative placeholders for this concept redesign.
+              </p>
             </div>
           </div>
 
@@ -362,8 +408,8 @@ function AboutSection() {
 
             <div className="space-y-6 text-dark-400 leading-relaxed">
               <p>
-                We are a premier apparel manufacturing company with over three decades of 
-                experience delivering exceptional products to the world&apos;s leading retailers 
+                We are a premier apparel manufacturing company with decades of 
+                experience delivering exceptional products to leading retailers 
                 and brands. Our expertise spans across all categories of fashion — from 
                 classic essentials to cutting-edge streetwear.
               </p>
@@ -396,16 +442,16 @@ function AboutSection() {
               </div>
             </div>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Updated with placeholder text */}
             <div className="grid grid-cols-3 gap-4">
               {[
-                { value: '12', label: 'Countries' },
-                { value: '500+', label: 'Employees' },
+                { value: 'Multiple', label: 'Regions' },
+                { value: 'Expert', label: 'Teams' },
                 { value: '24/7', label: 'Support' },
               ].map((stat) => (
                 <div key={stat.label} className="p-6 rounded-2xl bg-dark-900/30 border border-dark-800/30 text-center">
-                  <div className="font-display text-2xl font-bold text-accent">{stat.value}</div>
-                  <div className="text-xs text-dark-500 mt-1">{stat.label}</div>
+                  <div className="font-display text-xl font-bold text-accent">{stat.value}</div>
+                  <div className="text-xs text-neutral-500 mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -608,21 +654,21 @@ function CapabilitiesSection() {
 const locations = [
   {
     icon: IconBuilding,
-    title: 'New York Headquarters',
-    description: 'Our global headquarters managing operations, client relations, and strategic planning.',
-    location: 'New York, USA',
+    title: 'Headquarters',
+    description: 'Global headquarters managing operations, client relations, and strategic planning.',
+    location: 'North America',
   },
   {
     icon: IconGlobe,
-    title: 'Asia Sourcing Hub',
+    title: 'Sourcing Hub',
     description: 'Regional offices in key manufacturing centers overseeing production and quality.',
-    location: 'Hong Kong & Shanghai',
+    location: 'Asia Pacific',
   },
   {
     icon: IconShip,
     title: 'Factory Network',
-    description: 'Partnerships with 100+ vetted factories across Bangladesh, Vietnam, China, and India.',
-    location: 'Pan-Asia',
+    description: 'Partnerships with vetted factories across major manufacturing regions.',
+    location: 'Global',
   },
 ]
 
@@ -781,16 +827,20 @@ function PartnersSection() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <span className="text-accent font-medium tracking-wide uppercase text-sm">Our Partners</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-dark-100 leading-tight">
             Trusted by <span className="gradient-text">Leading Retailers</span>
           </h2>
           <p className="mt-6 text-dark-400 leading-relaxed">
-            We&apos;re proud to partner with some of the world&apos;s most recognized retail 
-            brands and fashion labels.
+            We partner with recognized retail brands and fashion labels across the industry.
           </p>
         </div>
+
+        {/* Placeholder Notice */}
+        <p className="text-xs text-neutral-500 text-center mb-12">
+          The following are generic placeholders. Actual partner logos would be added to the official site.
+        </p>
 
         {/* Partner Logos Placeholder */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -830,12 +880,12 @@ const sustainabilityPillars = [
   {
     icon: IconLeaf,
     title: 'Ethical Sourcing',
-    description: 'We partner only with factories that meet our strict ethical labor and environmental standards.',
+    description: 'We partner only with factories that meet strict ethical labor and environmental standards.',
   },
   {
     icon: IconQuality,
     title: 'Regular Audits',
-    description: 'Continuous monitoring and third-party audits ensure ongoing compliance across our supply chain.',
+    description: 'Continuous monitoring and third-party audits ensure ongoing compliance across the supply chain.',
   },
   {
     icon: IconGlobe,
@@ -863,8 +913,8 @@ function SustainabilitySection() {
             </div>
 
             <p className="text-dark-400 leading-relaxed">
-              Sustainability isn&apos;t just a buzzword for us — it&apos;s a core principle that guides 
-              every decision we make. From ethical labor practices to environmental stewardship, 
+              Sustainability is a core principle that guides every decision we make. 
+              From ethical labor practices to environmental stewardship, 
               we&apos;re committed to making a positive impact.
             </p>
 
@@ -884,6 +934,11 @@ function SustainabilitySection() {
                 </div>
               ))}
             </div>
+
+            {/* Sustainability Disclaimer */}
+            <p className="text-xs text-neutral-500 pt-4 border-t border-dark-800/30">
+              All sustainability claims shown here are conceptual placeholders demonstrating potential content direction.
+            </p>
           </div>
 
           {/* Right - Pillars */}
@@ -965,8 +1020,8 @@ function ContactSection() {
                   <IconLocation />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-dark-100">Headquarters</h4>
-                  <p className="text-sm text-dark-400">1411 Broadway, Suite 1620<br />New York, NY 10018</p>
+                  <h4 className="font-semibold text-dark-100">Address</h4>
+                  <p className="text-sm text-dark-400">123 Demo Street<br />New York, NY 10001</p>
                 </div>
               </div>
 
@@ -976,10 +1031,25 @@ function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-dark-100">Email</h4>
-                  <p className="text-sm text-dark-400">inquiries@premierapparel.com</p>
+                  <p className="text-sm text-dark-400">contact@example.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
+                  <IconPhone />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-dark-100">Phone</h4>
+                  <p className="text-sm text-dark-400">+1 (555) 123-4567</p>
                 </div>
               </div>
             </div>
+
+            {/* Contact Placeholder Notice */}
+            <p className="text-xs text-neutral-500 pt-4 border-t border-dark-800/30">
+              Contact information is placeholder content for this concept demonstration.
+            </p>
           </div>
 
           {/* Right - Form */}
@@ -1100,11 +1170,14 @@ function Footer() {
           <div className="md:col-span-2 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
-                <span className="text-dark-950 font-display font-bold text-sm">YJM</span>
+                <span className="text-dark-950 font-display font-bold text-sm">PA</span>
               </div>
-              <span className="font-display font-semibold text-xl text-dark-100">
-                YJM Apparel Group
-              </span>
+              <div className="flex flex-col">
+                <span className="font-display font-semibold text-xl text-dark-100">
+                  Premier Apparel
+                </span>
+                <span className="text-[10px] text-neutral-500 uppercase tracking-wider">Concept Redesign</span>
+              </div>
             </div>
             <p className="text-dark-500 text-sm leading-relaxed max-w-sm">
               Your trusted partner for end-to-end apparel manufacturing. Quality, speed, 
@@ -1130,9 +1203,9 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-dark-200 mb-4">Contact</h4>
             <ul className="space-y-3 text-sm text-dark-500">
-              <li>1411 Broadway, Suite 1620</li>
-              <li>New York, NY 10018</li>
-              <li className="pt-2">inquiries@premierapparel.com</li>
+              <li>123 Demo Street</li>
+              <li>New York, NY 10001</li>
+              <li className="pt-2">contact@example.com</li>
             </ul>
           </div>
         </div>
@@ -1141,10 +1214,10 @@ function Footer() {
         <div className="border-t border-dark-800/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-dark-600">
-              © {new Date().getFullYear()} YJM Apparel Group. All rights reserved.
+              © {new Date().getFullYear()} Premier Apparel Manufacturing (Concept)
             </p>
-            <p className="text-xs text-dark-600 text-center">
-              Concept Design • Not affiliated with YJM Apparel Group
+            <p className="text-xs text-neutral-500 text-center">
+              Concept Design • Not affiliated with YJM Apparel Group • For demonstration only
             </p>
           </div>
         </div>
@@ -1160,6 +1233,7 @@ function Footer() {
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <ConceptBanner />
       <Header />
       <HeroSection />
       <AboutSection />
@@ -1174,4 +1248,3 @@ export default function Home() {
     </main>
   )
 }
-
